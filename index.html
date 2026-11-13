@@ -152,14 +152,14 @@ button{font:inherit;color:inherit}
 .where li{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:.9rem;font-weight:500;background:var(--paper)}
 
 /* faq */
-.faq .wrap{padding-block:72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:56px}
+.faq .wrap{padding-block:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px}
 .faq h2{font-size:clamp(2.4rem,4vw,3.4rem)}
 .faq .intro{display:grid;gap:14px;align-content:start}
 .faq .intro p{color:var(--muted)}
 .faq .list{border-top:2px solid var(--fg);min-width:0}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{padding-block:18px;font-size:1.06rem}
-.faq .a{padding-bottom:18px;color:var(--muted);max-width:40em}
+.faq summary{padding-block:10px;font-size:1rem}
+.faq .a{padding-bottom:12px;color:var(--muted);max-width:40em;font-size:.95rem}
 /* example reviews */
 .reviews .wrap{padding-block:72px;display:grid;gap:24px}
 .reviews-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px}
@@ -213,10 +213,11 @@ button{font:inherit;color:inherit}
 
 @media (max-width:860px){
   .product .wrap,.steps .wrap,.benefit .wrap,.faq .wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .faq .wrap{gap:18px}
   .product .wrap{padding-block:20px 40px}
   .benefit .wrap{padding-block:48px}
   .benefit.flip figure{order:0}
-  .faq .wrap{padding-block:52px}
+  .faq .wrap{padding-block:36px}
   .steps .wrap{padding-block:44px}
 }
 @media (max-width:640px){
