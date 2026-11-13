@@ -20,6 +20,84 @@ Page en ligne : https://jonlekern.github.io/klarshit/
 
 ---
 
+## Charte graphique
+
+### Couleurs
+| Variable | Valeur | À quoi elle sert |
+|---|---|---|
+| `--bg` | `#f2f4f5` | Fond de la page, blanc légèrement gris-bleu |
+| `--paper` | `#ffffff` | Cartes, photos, en-tête, barre du bas |
+| `--fg` | `#121519` | Texte principal, bandeau du haut, bloc « Nuit », pied de page |
+| `--muted` | `#59616b` | Texte secondaire, légendes, sur-titres |
+| `--line` | `#d6dade` | Filets et bordures |
+| `--red` | `#d3121b` | Accent : logo, boutons d'achat, mots mis en avant, étoiles, « + » de la FAQ |
+
+- Le survol des boutons rouges utilise `#b30f17`, un rouge plus foncé. C'est la
+  seule couleur écrite en dur.
+- Sur fond noir (`--fg`), le texte est blanc (`--paper`) et le texte secondaire
+  `#aab1ba`.
+
+### Polices
+Trois polices, chacune avec un seul rôle.
+
+| Rôle | Police | Graisse | Taille | Détails |
+|---|---|---|---|---|
+| Logo KLARSHIT | **Malabard** | 800 | en-tête 1.7rem · titre produit 3 à 5.4rem · pied de page 3 à 7rem | Toujours en CAPITALES, espacement 0.02em. Rouge dans le titre produit, noir dans l'en-tête, blanc dans le pied de page. Jamais pour autre chose que le mot KLARSHIT. |
+| Titres de section (h2) | **Isocircle** | 500 | 2.2 à 3.8rem selon l'écran | Interligne 1.1. Un mot peut passer en rouge avec `<em>`, un seul par titre. |
+| Sous-titre produit | **Isocircle** | 500 | 1.35 à 1.8rem | Sous le logo dans le bloc d'achat. |
+| Petits titres (h3) | **Isocircle** | 500 | 1.4rem | Étapes du mode d'emploi. |
+| Chiffres mis en avant | **Isocircle** | 500 | 2.6 à 3.2rem | Numéros des étapes (en rouge), note des avis. |
+| Sur-titre au-dessus d'un titre | **Barlow** | 600 | 0.78rem | CAPITALES, espacement 0.14em, couleur `--muted`. Exemples : « MODE D'EMPLOI », « PLUIE ». |
+| Texte courant | **Barlow** | 400 | 17px | Interligne 1.55. Texte secondaire en `--muted`. |
+| Boutons | **Barlow** | 600 | 1.08rem | |
+| Questions de la FAQ, intitulés dépliables | **Barlow** | 600 | 1rem | |
+| Étiquettes et badges | **Barlow** | 600 | 0.7 à 0.72rem | CAPITALES, en forme de pilule. Exemples : « POPULAIRE », « EXEMPLE ». |
+
+- Isocircle n'existe ici qu'en 500 et Malabard qu'en 800 : pas de gras, pas
+  d'italique sur ces deux polices.
+- Les textes « BEFORE / AFTER » incrustés sur les photos sont en Isocircle 070,
+  blanc, dans une pilule noire ou rouge. Pour en ajouter, garder ce style.
+
+### Formes
+- **Coins arrondis** : 10px pour les cartes, les photos, la vidéo et les
+  boutons (`--radius`) ; pilule (999px) pour les badges, les étiquettes et le
+  bouton FR/DE.
+- **Bordures** : 1px en `--line`. Le lot sélectionné a une bordure noire.
+- **Pas d'ombres portées, pas de dégradés.**
+- **Cartes blanches seulement pour les objets** : les lots, les avis. Les
+  sections de texte n'ont pas de cadre.
+
+### Boutons
+| Type | Style | Exemple |
+|---|---|---|
+| Principal | Fond `--red`, texte blanc, coins 10px, pleine largeur dans le bloc d'achat | « Ajouter au panier », « Acheter » |
+| Secondaire | Fond blanc, bordure 1.5px `--fg`, texte noir | « Afficher plus » |
+
+Un seul bouton rouge visible par zone : c'est toujours l'achat.
+
+### Mise en page
+- **Largeur maximale** : 1180px, centrée.
+- **Marge sur les côtés** : 16px minimum sur téléphone.
+- **Espace vertical des sections** : 48 à 72px sur ordinateur, 36 à 56px sur
+  téléphone.
+- **Blocs image + texte** : deux colonnes côte à côte sur ordinateur, qui
+  alternent gauche et droite ; une seule colonne sur téléphone.
+- **Texte aligné à gauche.** On ne centre pas les paragraphes.
+
+### Photos
+- Produit rouge, sur fond blanc ou en situation (pluie, nuit, voiture).
+- Pas de filtre, pas de cadre, pas de texte ajouté, sauf les pilules
+  BEFORE / AFTER.
+- Toujours une légende courte en gris sous les photos des blocs, en FR et en DE.
+
+### À éviter
+- Une 4e police, ou Malabard ailleurs que sur le logo.
+- Plus d'un mot rouge par titre.
+- Ombres, dégradés, emoji, fonds colorés autres que le noir du bloc « Nuit ».
+- Du texte centré en paragraphe.
+
+---
+
 ## Les règles
 
 ### 1. Un seul fichier, pas d'outils
@@ -40,31 +118,19 @@ Page en ligne : https://jonlekern.github.io/klarshit/
 - **On tutoie** dans les deux langues (« tu », « du »).
 - **Allemand de Suisse** : « ss », jamais « ß ».
 
-### 3. Couleurs
-- **Seulement les variables du haut du CSS** (`:root`) : `--bg`, `--paper`,
-  `--fg`, `--muted`, `--line`, `--red`. On n'ajoute pas de couleur écrite en
-  dur ailleurs.
-- **Le rouge (`--red`) est l'accent**, c'est celui du produit. Pas de dégradés,
-  pas de nouvelle couleur vive.
+### 3. Couleurs et polices
+- **Suivre la charte graphique ci-dessus.** Pas de nouvelle couleur, pas de
+  nouvelle police.
+- **Les couleurs passent par les variables** (`var(--red)`, etc.), jamais en
+  valeur écrite à la main.
 
-### 4. Polices
-| Police | Où | Graisse |
-|---|---|---|
-| Malabard | **Uniquement** le logo KLARSHIT, en capitales | 800 |
-| Isocircle | Les titres (h1, h2, h3), les quantités des lots, les chiffres des étapes | 500 |
-| Barlow | Tout le reste | 400 à 600 |
-
-- On n'ajoute pas d'autre police.
-- On ne met pas Isocircle ou Malabard en gras ou en italique : seule la
-  graisse indiquée existe, le navigateur fabriquerait un faux gras.
-
-### 5. Pas d'emoji
+### 4. Pas d'emoji
 - **Aucun emoji**, nulle part, ni dans les textes ni dans les boutons.
 - **Les icônes sont des SVG** écrits dans le HTML, comme le panier ou le
   cadenas : `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`,
   `stroke-width="1.8"`.
 
-### 6. Téléphone et ordinateur
+### 5. Téléphone et ordinateur
 - **Vérifier chaque modification à deux largeurs** : 400 px (téléphone) et
   1280 px (ordinateur). Dans Chrome : clic droit, Inspecter, puis l'icône
   téléphone.
@@ -74,7 +140,7 @@ Page en ligne : https://jonlekern.github.io/klarshit/
 - Sur téléphone, les avis montrent 3 cartes puis le bouton « Afficher plus ».
   Sur ordinateur, 6 cartes sur deux lignes de trois.
 
-### 7. Prix et offres
+### 6. Prix et offres
 Les offres actuelles :
 
 | Offre | Prix | Bonus |
@@ -92,7 +158,7 @@ prix différents :
 4. Les prix par défaut dans le bouton principal et dans la barre du bas
    (`class="js-price"`).
 
-### 8. Honnêteté, à ne jamais enlever
+### 7. Honnêteté, à ne jamais enlever
 - **Les avis sont des exemples.** Ils gardent leur étiquette « Exemple » et le
   bandeau « Avis d'exemple pour la démonstration » tant qu'ils ne viennent pas
   de vrais clients de KLARSHIT. On n'ajoute pas d'avis présentés comme vrais.
@@ -104,7 +170,7 @@ prix différents :
 - **Pas d'infos fournisseur** : ce repo est public. Pas de nom de fournisseur,
   de prix d'achat ni de marge.
 
-### 9. Ne pas toucher
+### 8. Ne pas toucher
 - **Les premières lignes du fichier** (`<meta>` et `<title>`). Elles servent
   aussi à l'aperçu de la page dans Claude.
 - **Le dossier `fonts/`** et ses licences (`OFL.txt`, `ISOCIRCLE-LICENCE.txt`).
@@ -113,7 +179,7 @@ prix différents :
   icônes et sa musique générée par `video/musique.py`. Pour la changer,
   demander à Johnny.
 
-### 10. Images
+### 9. Images
 - **Rangées dans `img/`**, avec des noms simples en minuscules, sans espace ni
   accent (`avis-colis.jpg`, pas `Photo Avis 1.JPG`).
 - **Format** : JPG, 800 px de large au maximum, qualité 80 à 85. Les photos
