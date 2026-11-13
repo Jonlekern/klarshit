@@ -15,6 +15,18 @@ Ce qui change par rapport à la démo :
 
 Compte environ une heure la première fois.
 
+## À coller dans ChatGPT
+
+Colle ce message, puis ce fichier `SHOPIFY.md`, puis le contenu de
+`shopify/sections/klarshit-produit.liquid` :
+
+> Je dois mettre une page produit sur ma boutique Shopify. Voici le guide
+> SHOPIFY.md et la section klarshit-produit.liquid. Guide-moi étape par étape,
+> une étape à la fois, et attends que je te dise « fait » avant de passer à la
+> suivante. Si tu modifies le .liquid, ne touche pas au bloc {% form %}, aux
+> product.variants, aux file_url / asset_url ni au {% schema %}, garde chaque
+> texte en français ET en allemand, et rends-moi le fichier complet.
+
 ---
 
 ## 1. Créer le produit
