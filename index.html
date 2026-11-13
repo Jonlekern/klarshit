@@ -28,7 +28,7 @@
 :root:not(.de) [lang="de"], :root.de [lang="fr"]{display:none!important}
 
 *,*::before,*::after{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
 h1,h2,h3{font-family:var(--f-display);font-weight:500;font-synthesis:none;line-height:1.1;margin:0;letter-spacing:-.005em;hyphens:manual;overflow-wrap:break-word}
 p{margin:0}
