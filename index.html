@@ -1,0 +1,614 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KLARSHIT</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  /* colors: one light look, product red on cool glass-white */
+  --bg:#f2f4f5;      /* page ground, cool off-white */
+  --paper:#ffffff;   /* photo + card surface */
+  --fg:#121519;      /* ink, also the night band */
+  --muted:#59616b;   /* secondary text */
+  --line:#d6dade;    /* hairlines, borders */
+  --red:#d3121b;     /* product shell red, accent */
+  /* fonts: logo = Malabard 800 (wordmark only), titles = Isocircle 050 pleine, body = Barlow */
+  --f-logo:"Malabard","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --f-display:"Isocircle","Century Gothic","Avenir Next","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Barlow","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* layout: 1180px max wrapper, 2-col hero and benefit rows, single column under 860px */
+  --max:1180px;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --radius:10px;
+}
+@font-face{font-family:"Malabard";src:url(fonts/Malabard-ExtraBold.woff2) format("woff2");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Isocircle";src:url(fonts/ISOCIRCLE-050.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+:root:not(.de) [lang="de"], :root.de [lang="fr"]{display:none!important}
+
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:10}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;font-synthesis:none;line-height:1.1;margin:0;letter-spacing:-.005em;hyphens:manual;overflow-wrap:break-word}
+p{margin:0}
+a{color:inherit}
+img{display:block;height:auto}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.wordmark{font-family:var(--f-logo);font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* announcement */
+.announce{background:var(--fg);color:var(--paper);font-size:.86rem;font-weight:500}
+.announce .wrap{padding-block:8px;display:flex;justify-content:center;gap:10px;text-align:center}
+
+/* header */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
+.site-header .wordmark{font-size:1.7rem;text-decoration:none;color:var(--fg);line-height:1}
+.site-header .wordmark span{color:var(--red)}
+.nav{display:flex;gap:22px;margin-right:auto;font-weight:500}
+.nav a{text-decoration:none;padding-block:4px;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--red)}
+.tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:2px}
+.lang button{border:0;background:none;padding:4px 10px;border-radius:999px;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--paper)}
+.cart{display:grid;place-items:center;width:40px;height:40px;border-radius:999px;text-decoration:none}
+.cart:hover{background:var(--bg)}
+.cart svg{width:22px;height:22px}
+
+/* hero / product */
+.product .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;padding-block:40px 56px;align-items:start}
+#produit,#acheter,#contact,#faq{scroll-margin-top:calc(84px + env(safe-area-inset-top,0px))}
+.gallery{min-width:0}
+.gallery-main{background:var(--paper);border-radius:var(--radius);overflow:hidden;aspect-ratio:1/1}
+.gallery-main img{width:100%;height:100%;object-fit:contain}
+.gallery-cap{font-size:.86rem;color:var(--muted);margin-top:10px}
+.thumbs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:12px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:6px;background:var(--paper);cursor:pointer;overflow:hidden;aspect-ratio:1/1}
+.thumbs button img{width:100%;height:100%;object-fit:cover}
+.thumbs button[aria-current="true"]{border-color:var(--fg)}
+
+.buy{min-width:0;display:flex;flex-direction:column;gap:22px}
+.buy h1 .wordmark{display:block;font-size:clamp(3rem,7vw,5.4rem);color:var(--red);line-height:.9}
+.buy h1 .ptitle{display:block;font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.15;margin-top:12px;font-weight:500;text-transform:none}
+.hook{font-size:1.12rem;color:var(--muted);max-width:34em}
+
+.tiers{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+.tiers legend{padding:0;margin-bottom:10px}
+.tier{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius);padding:14px 16px;cursor:pointer}
+.tier:hover{border-color:var(--muted)}
+.tier input{position:absolute;opacity:0;pointer-events:none}
+.tier .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);display:grid;place-items:center}
+.tier .dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--red);transform:scale(0)}
+.tier:has(input:checked){border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}
+.tier:has(input:checked) .dot{border-color:var(--red)}
+.tier:has(input:checked) .dot::after{transform:scale(1)}
+.tier:has(input:focus-visible){outline:3px solid var(--red);outline-offset:3px}
+.tier-main{min-width:0}
+.tier-qty{font-family:var(--f-display);font-weight:500;font-synthesis:none;font-size:1.35rem;line-height:1.1}
+.tier-sub{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tier-sub img{width:28px;height:28px;border-radius:4px;object-fit:cover}
+.tier-price{text-align:right;min-width:0}
+.tier-price strong{display:block;font-size:1.15rem;font-weight:600;white-space:nowrap}
+.tier-price s{display:block;font-size:.85rem;color:var(--muted);white-space:nowrap}
+.tier-save{display:block;font-size:.82rem;font-weight:600;color:var(--red);white-space:nowrap}
+.badge{position:absolute;top:-11px;left:50px;background:var(--red);color:var(--paper);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.unit{font-size:.82rem;color:var(--muted)}
+
+.btn{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;border:0;border-radius:var(--radius);background:var(--red);color:var(--paper);font-weight:600;font-size:1.08rem;padding:17px 20px;cursor:pointer;transition:background .15s}
+.btn:hover{background:#b30f17}
+.btn:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.mock-msg{font-size:.92rem;background:var(--paper);border:1px dashed var(--fg);border-radius:8px;padding:10px 12px}
+
+.trust{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem;font-weight:500}
+.trust span{display:inline-flex;gap:6px;align-items:center}
+.trust svg{width:18px;height:18px;flex:none}
+.pay{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.pay li{border:1px solid var(--line);background:var(--paper);border-radius:5px;padding:3px 9px;font-size:.78rem;font-weight:600;letter-spacing:.03em}
+
+.info{border-top:1px solid var(--line)}
+.info details{border-bottom:1px solid var(--line)}
+.info summary,.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px;font-weight:600}
+.info summary::-webkit-details-marker,.faq summary::-webkit-details-marker{display:none}
+.info summary::after,.faq summary::after{content:"+";font-family:var(--f-display);font-weight:500;font-size:1.4rem;line-height:1;color:var(--red);flex:none}
+.info details[open] summary::after,.faq details[open] summary::after{content:"\2013"}
+.info .body{padding-bottom:16px;color:var(--muted);display:grid;gap:10px}
+.info .body img{width:100%;max-width:340px;border-radius:8px}
+.plain-mail{font-weight:600;color:var(--fg)}
+
+/* steps strip */
+.steps{background:var(--paper);border-block:1px solid var(--line)}
+.steps .wrap{padding-block:56px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:48px;align-items:center}
+.steps figure{margin:0;border-radius:var(--radius);overflow:hidden}
+.steps figure img{width:100%}
+.steps h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:28px}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.steps li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;align-items:baseline;border-top:1px solid var(--line);padding-top:18px}
+.steps .n{font-family:var(--f-display);font-weight:500;font-size:2.6rem;line-height:1;color:var(--red)}
+.steps h3{font-size:1.4rem;margin-bottom:4px}
+.steps p{color:var(--muted)}
+
+/* benefits */
+.benefit .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center;padding-block:72px}
+.benefit.flip figure{order:2}
+.benefit figure{margin:0;min-width:0}
+.benefit figure img{width:100%;border-radius:var(--radius)}
+.benefit figure video{display:block;width:100%;height:auto;border-radius:var(--radius);background:var(--fg)}
+.benefit figcaption{font-size:.84rem;color:var(--muted);margin-top:10px}
+.benefit .txt{min-width:0;display:grid;gap:16px;max-width:30em}
+.benefit h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+.benefit p{font-size:1.08rem}
+.benefit.night{background:var(--fg);color:var(--paper)}
+.benefit.night .eyebrow,.benefit.night figcaption{color:#aab1ba}
+.benefit.night h2 em{font-style:normal;color:var(--red)}
+.benefit h2 em{font-style:normal;color:var(--red)}
+.where{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:4px 0 0;padding:0}
+.where li{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:.9rem;font-weight:500;background:var(--paper)}
+
+/* faq */
+.faq .wrap{padding-block:72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:56px}
+.faq h2{font-size:clamp(2.4rem,4vw,3.4rem)}
+.faq .intro{display:grid;gap:14px;align-content:start}
+.faq .intro p{color:var(--muted)}
+.faq .list{border-top:2px solid var(--fg);min-width:0}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{padding-block:18px;font-size:1.06rem}
+.faq .a{padding-bottom:18px;color:var(--muted);max-width:40em}
+
+/* footer */
+.site-footer{background:var(--fg);color:var(--paper);padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.site-footer .wrap{padding-block:48px 32px;display:grid;gap:28px}
+.site-footer .wordmark{font-size:clamp(3rem,10vw,7rem);line-height:.85;color:var(--paper)}
+.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid #343a42;padding-top:20px;font-size:.92rem;color:#aab1ba}
+.legal{display:flex;flex-wrap:wrap;gap:6px 20px;list-style:none;margin:0;padding:0}
+.tagline{font-size:1.2rem;font-weight:500}
+
+/* sticky bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(18,21,25,.08);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .wrap{display:flex;align-items:center;gap:14px;padding-block:10px}
+.bar img{width:48px;height:48px;border-radius:6px;object-fit:cover;flex:none;background:var(--bg)}
+.bar .meta{min-width:0;flex:1;line-height:1.25}
+.bar .meta b{font-family:var(--f-logo);font-weight:800;letter-spacing:.02em;display:block}
+.bar .meta span{font-size:.9rem;color:var(--muted)}
+.bar .btn{width:auto;padding:12px 22px;font-size:1rem;flex:none}
+.bar .mock-msg{margin-top:0;margin-bottom:10px}
+.bar-msg-wrap{padding-top:0}
+
+@media (max-width:860px){
+  .product .wrap,.steps .wrap,.benefit .wrap,.faq .wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .product .wrap{padding-block:20px 40px}
+  .benefit .wrap{padding-block:48px}
+  .benefit.flip figure{order:0}
+  .faq .wrap{padding-block:52px}
+  .steps .wrap{padding-block:44px}
+}
+@media (max-width:640px){
+  .site-header .wrap{flex-wrap:wrap;gap:6px 12px;padding-block:10px 0}
+  .nav{order:3;width:100%;gap:20px;font-size:.95rem;border-top:1px solid var(--line);padding-block:6px}
+  .site-header .wordmark{font-size:1.45rem}
+  .tier{padding:14px 12px;gap:10px}
+  .tier-qty{font-size:1.2rem}
+  .bar .meta span.unit-h{display:none}
+  .bar .btn{padding:12px 16px}
+  body{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="announce" id="top">
+  <div class="wrap">
+    <span lang="fr">Livraison gratuite partout en Suisse · 2 à 4 jours ouvrables</span>
+    <span lang="de">Gratis Versand in die ganze Schweiz · 2–4 Werktage</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="KLARSHIT">KLARSHIT</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#produit"><span lang="fr">Produit</span><span lang="de">Produkt</span></a>
+      <a href="#contact"><span lang="fr">Contact</span><span lang="de">Kontakt</span></a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Langue / Sprache">
+        <button type="button" id="lang-fr" data-set-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" id="lang-de" data-set-lang="de" aria-pressed="false">DE</button>
+      </div>
+      <a class="cart" id="cart-link" href="#acheter" aria-label="Panier">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="product" id="produit" aria-label="KLARSHIT">
+  <div class="wrap">
+    <div class="gallery">
+      <div class="gallery-main">
+        <img id="gallery-main" src="img/duo.jpg" width="800" height="800" alt="">
+      </div>
+      <p class="gallery-cap" id="gallery-cap" aria-live="polite"></p>
+      <div class="thumbs" id="thumbs" role="group" aria-label="Photos">
+        <button type="button" id="thumb-1" aria-current="true" data-src="img/duo.jpg"
+          data-fr="Deux brosses rouges, sur un rétroviseur et un pare-brise mouillés."
+          data-de="Zwei rote Bürsten, an einem nassen Spiegel und einer Windschutzscheibe."><img src="img/duo.jpg" alt="" width="80" height="80"></button>
+        <button type="button" id="thumb-2" data-src="img/face.jpg"
+          data-fr="De face et de côté : coque rouge, base noire, tampon blanc."
+          data-de="Von vorne und von der Seite: rote Schale, schwarzer Sockel, weisses Pad."><img src="img/face.jpg" alt="" width="80" height="80"></button>
+        <button type="button" id="thumb-3" data-src="img/tampon.jpg"
+          data-fr="Le tampon en mousse. Tu appuies, il libère le liquide."
+          data-de="Das Schaumpad. Du drückst, es gibt die Flüssigkeit ab."><img src="img/tampon.jpg" alt="" width="80" height="80"></button>
+        <button type="button" id="thumb-4" data-src="img/pluie.jpg"
+          data-fr="Sur un rétroviseur, sous la pluie."
+          data-de="An einem Aussenspiegel, im Regen."><img src="img/pluie.jpg" alt="" width="80" height="80"></button>
+        <button type="button" id="thumb-5" data-src="img/nuit.jpg"
+          data-fr="Pare-brise de nuit : avec film gras à gauche, propre à droite (photo d'illustration)."
+          data-de="Windschutzscheibe in der Nacht: links mit Fettfilm, rechts sauber (Illustrationsbild)."><img src="img/nuit.jpg" alt="" width="80" height="80"></button>
+        <button type="button" id="thumb-6" data-src="img/interieur.jpg"
+          data-fr="En main, à l'intérieur de la voiture. Il tient dans la paume."
+          data-de="In der Hand, im Auto. Passt in die Handfläche."><img src="img/interieur.jpg" alt="" width="80" height="80"></button>
+      </div>
+    </div>
+
+    <div class="buy" id="acheter">
+      <h1>
+        <span class="wordmark">KLARSHIT</span>
+        <span class="ptitle"><span lang="fr">Brosse anti-film gras pour vitres de voiture</span><span lang="de">Ölfilm-Bürste für Autoscheiben</span></span>
+      </h1>
+      <p class="hook">
+        <span lang="fr">Elle retire le film gras et les traces d'eau de tes vitres. Tu vois plus clair sous la pluie et de nuit.</span>
+        <span lang="de">Sie entfernt Fettfilm und Wasserflecken von deinen Scheiben. Du siehst klarer bei Regen und in der Nacht.</span>
+      </p>
+
+      <fieldset class="tiers" id="tiers">
+        <legend class="eyebrow"><span lang="fr">Choisis ton lot</span><span lang="de">Wähle dein Set</span></legend>
+
+        <label class="tier" for="tier-2">
+          <input type="radio" name="tier" id="tier-2" value="2">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="tier-main">
+            <span class="tier-qty">2×</span>
+            <span class="tier-sub"><span lang="fr">L'offre de base · CHF 14.95 / pièce</span><span lang="de">Das Grundangebot · CHF 14.95 / Stück</span></span>
+          </span>
+          <span class="tier-price"><strong>CHF 29.90</strong></span>
+        </label>
+
+        <label class="tier" for="tier-4">
+          <span class="badge"><span lang="fr">Populaire</span><span lang="de">Beliebt</span></span>
+          <input type="radio" name="tier" id="tier-4" value="4" checked>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="tier-main">
+            <span class="tier-qty">4×</span>
+            <span class="tier-sub"><img src="img/microfibre.png" alt="" width="28" height="28"><span lang="fr">+ chiffon microfibre offert</span><span lang="de">+ Mikrofasertuch gratis</span></span>
+          </span>
+          <span class="tier-price"><s><span class="sr" lang="fr">au lieu de </span><span class="sr" lang="de">statt </span>CHF 59.80</s><strong>CHF 49.90</strong><span class="tier-save"><span lang="fr">Tu économises 9.90</span><span lang="de">Du sparst 9.90</span></span></span>
+        </label>
+
+        <label class="tier" for="tier-6">
+          <input type="radio" name="tier" id="tier-6" value="6">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="tier-main">
+            <span class="tier-qty">6×</span>
+            <span class="tier-sub"><img src="img/microfibre.png" alt="" width="28" height="28"><span lang="fr">+ chiffon microfibre offert</span><span lang="de">+ Mikrofasertuch gratis</span></span>
+          </span>
+          <span class="tier-price"><s><span class="sr" lang="fr">au lieu de </span><span class="sr" lang="de">statt </span>CHF 89.70</s><strong>CHF 64.90</strong><span class="tier-save"><span lang="fr">Tu économises 24.80</span><span lang="de">Du sparst 24.80</span></span></span>
+        </label>
+        <p class="unit"><span lang="fr">Économies calculées par rapport à l'achat de lots de 2 (CHF 29.90 le lot).</span><span lang="de">Ersparnis im Vergleich zum Kauf von 2er-Sets (CHF 29.90 pro Set).</span></p>
+      </fieldset>
+
+      <div>
+        <button type="button" class="btn js-buy" id="add-to-cart">
+          <span lang="fr">Ajouter au panier</span><span lang="de">In den Warenkorb</span>
+          <span aria-hidden="true">·</span> <span class="js-price">CHF 49.90</span>
+        </button>
+        <p class="mock-msg" id="mock-msg-main" role="status" hidden style="margin-top:10px">
+          <span lang="fr">Ceci est une maquette. Le paiement n'est pas branché et rien n'a été commandé.</span>
+          <span lang="de">Das ist ein Mockup. Die Zahlung ist nicht angeschlossen, es wurde nichts bestellt.</span>
+        </p>
+      </div>
+
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span lang="fr">Paiement sécurisé</span><span lang="de">Sichere Zahlung</span></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span lang="fr">Livraison gratuite en Suisse</span><span lang="de">Gratis Versand in der Schweiz</span></span>
+      </div>
+      <ul class="pay" aria-label="Paiement / Zahlung">
+        <li>TWINT</li><li>Visa</li><li>Mastercard</li><li>Apple Pay</li><li>Google Pay</li>
+      </ul>
+
+      <div class="info">
+        <details open>
+          <summary><span lang="fr">Description</span><span lang="de">Beschreibung</span></summary>
+          <div class="body">
+            <p lang="fr">KLARSHIT est un applicateur rechargeable qui tient dans la paume. La coque rouge contient le liquide. Quand tu presses le tampon en mousse blanche contre la vitre, il libère le liquide. Tu frottes le film gras et les traces d'eau, puis tu essuies avec un chiffon sec.</p>
+            <p lang="de">KLARSHIT ist ein nachfüllbarer Applikator, der in die Handfläche passt. Die rote Schale enthält die Flüssigkeit. Drückst du das weisse Schaumpad auf die Scheibe, gibt es die Flüssigkeit ab. Du reibst Fettfilm und Wasserflecken weg und wischst mit einem trockenen Tuch nach.</p>
+            <p lang="fr">Pour le pare-brise dedans et dehors, les vitres latérales et les rétroviseurs.</p>
+            <p lang="de">Für die Windschutzscheibe innen und aussen, die Seitenscheiben und die Spiegel.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span lang="fr">Livraison en Suisse</span><span lang="de">Versand in der Schweiz</span></summary>
+          <div class="body">
+            <p lang="fr">Gratuite partout en Suisse. Compte 2 à 4 jours ouvrables après ta commande.</p>
+            <p lang="de">Gratis in die ganze Schweiz. Rechne mit 2–4 Werktagen nach deiner Bestellung.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span lang="fr">Paiement sécurisé</span><span lang="de">Sichere Zahlung</span></summary>
+          <div class="body">
+            <p lang="fr">Tu paies comme tu préfères : TWINT, Visa, Mastercard, Apple Pay ou Google Pay. Les montants sont en francs suisses.</p>
+            <p lang="de">Du zahlst, wie du willst: TWINT, Visa, Mastercard, Apple Pay oder Google Pay. Alle Beträge in Schweizer Franken.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span lang="fr">Un souci avec ta commande ?</span><span lang="de">Stimmt etwas nicht?</span></summary>
+          <div class="body">
+            <p lang="fr">Colis abîmé, brosse qui fuit, mauvaise quantité ? Écris-nous avec ton numéro de commande et une photo. On te répond et on cherche une solution avec toi.</p>
+            <p lang="de">Paket beschädigt, Bürste undicht, falsche Menge? Schreib uns mit deiner Bestellnummer und einem Foto. Wir melden uns und suchen mit dir eine Lösung.</p>
+          </div>
+        </details>
+        <details id="contact">
+          <summary><span lang="fr">Contact</span><span lang="de">Kontakt</span></summary>
+          <div class="body">
+            <p><span lang="fr">Écris-nous à </span><span lang="de">Schreib uns an </span><span class="plain-mail">hello@klarshit.example</span></p>
+            <p lang="fr">On répond en français et en allemand.</p>
+            <p lang="de">Wir antworten auf Deutsch und Französisch.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-title">
+  <div class="wrap">
+    <figure><img src="img/tampon.jpg" width="800" height="800" alt="Gros plan du tampon en mousse blanche sur la base noire et la coque rouge." data-alt-de="Nahaufnahme des weissen Schaumpads auf dem schwarzen Sockel und der roten Schale." data-alt-fr="Gros plan du tampon en mousse blanche sur la base noire et la coque rouge."></figure>
+    <div>
+      <p class="eyebrow" style="margin-bottom:10px"><span lang="fr">Mode d'emploi</span><span lang="de">So gehts</span></p>
+      <h2 id="steps-title"><span lang="fr">Trois gestes, vitre nette.</span><span lang="de">Drei Handgriffe, klare Scheibe.</span></h2>
+      <ol>
+        <li><span class="n">1</span><div><h3><span lang="fr">Appuie</span><span lang="de">Drücken</span></h3><p lang="fr">Presse le tampon contre la vitre. La mousse libère le liquide.</p><p lang="de">Drück das Pad auf die Scheibe. Der Schaum gibt die Flüssigkeit ab.</p></div></li>
+        <li><span class="n">2</span><div><h3><span lang="fr">Frotte</span><span lang="de">Reiben</span></h3><p lang="fr">Travaille par petites zones, sur le film gras et les traces d'eau.</p><p lang="de">Arbeite in kleinen Flächen über Fettfilm und Wasserflecken.</p></div></li>
+        <li><span class="n">3</span><div><h3><span lang="fr">Essuie</span><span lang="de">Nachwischen</span></h3><p lang="fr">Termine avec un chiffon microfibre sec. Il est offert dès 4 brosses.</p><p lang="de">Zum Schluss mit einem trockenen Mikrofasertuch nachwischen. Ab 4 Bürsten ist es gratis dabei.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="benefit flip demo" aria-labelledby="demo-title">
+  <div class="wrap">
+    <figure>
+      <video id="demo-video" controls playsinline preload="metadata" poster="img/video-poster.jpg" width="720" height="764">
+        <source src="video/demo.mp4" type="video/mp4">
+      </video>
+      <figcaption><span lang="fr">Démonstration sur une lunette arrière. Vidéo du fournisseur, 36 secondes.</span><span lang="de">Vorführung an einer Heckscheibe. Video des Lieferanten, 36 Sekunden.</span></figcaption>
+    </figure>
+    <div class="txt">
+      <p class="eyebrow"><span lang="fr">En vidéo</span><span lang="de">Im Video</span></p>
+      <h2 id="demo-title"><span lang="fr">Regarde-la <em>travailler</em>.</span><span lang="de">Schau ihr bei der <em>Arbeit</em> zu.</span></h2>
+      <p lang="fr">Une moitié de vitre passée à la brosse, l'autre laissée telle quelle. Puis un coup de jet d'eau pour comparer.</p>
+      <p lang="de">Eine Hälfte der Scheibe mit der Bürste behandelt, die andere unberührt. Dann ein Wasserstrahl zum Vergleich.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefit" aria-labelledby="b1">
+  <div class="wrap">
+    <figure>
+      <img src="img/pluie.jpg" width="800" height="800" alt="Une main passe la brosse rouge sur un rétroviseur mouillé, sous la pluie." data-alt-fr="Une main passe la brosse rouge sur un rétroviseur mouillé, sous la pluie." data-alt-de="Eine Hand führt die rote Bürste über einen nassen Aussenspiegel im Regen.">
+      <figcaption><span lang="fr">Rétroviseur sous la pluie.</span><span lang="de">Aussenspiegel im Regen.</span></figcaption>
+    </figure>
+    <div class="txt">
+      <p class="eyebrow"><span lang="fr">Pluie</span><span lang="de">Regen</span></p>
+      <h2 id="b1"><span lang="fr">Ton rétro, <em>lisible</em> sous l'averse.</span><span lang="de">Dein Spiegel, <em>klar</em> im Regenguss.</span></h2>
+      <p lang="fr">Le film gras retient les gouttes et brouille l'image dans le rétroviseur. Un passage de KLARSHIT retire ce film et les traces d'eau séchées.</p>
+      <p lang="de">Der Fettfilm hält Tropfen fest und macht das Spiegelbild unscharf. Ein Durchgang mit KLARSHIT entfernt diesen Film und eingetrocknete Wasserflecken.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefit flip night" aria-labelledby="b2">
+  <div class="wrap">
+    <figure>
+      <img src="img/nuit.jpg" width="750" height="750" alt="Vue du conducteur de nuit : à gauche un pare-brise gras avec des halos, à droite une vitre propre." data-alt-fr="Vue du conducteur de nuit : à gauche un pare-brise gras avec des halos, à droite une vitre propre." data-alt-de="Fahrersicht in der Nacht: links eine fettige Scheibe mit Lichthöfen, rechts eine saubere Scheibe.">
+      <figcaption><span lang="fr">Image d'illustration : avant à gauche, après à droite.</span><span lang="de">Illustrationsbild: links vorher, rechts nachher.</span></figcaption>
+    </figure>
+    <div class="txt">
+      <p class="eyebrow"><span lang="fr">Nuit</span><span lang="de">Nacht</span></p>
+      <h2 id="b2"><span lang="fr">Moins de halos, <em>plus de route.</em></span><span lang="de">Weniger Lichthöfe, <em>mehr Strasse.</em></span></h2>
+      <p lang="fr">De nuit, un pare-brise gras étale la lumière des phares et des lampadaires. Une vitre propre rend les lignes et les feux plus nets.</p>
+      <p lang="de">In der Nacht verschmiert eine fettige Scheibe das Licht von Scheinwerfern und Laternen. Auf einer sauberen Scheibe siehst du Linien und Lichter schärfer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefit" aria-labelledby="b3">
+  <div class="wrap">
+    <figure>
+      <img src="img/interieur.jpg" width="790" height="786" alt="La brosse rouge tenue dans la main, à l'intérieur de la voiture." data-alt-fr="La brosse rouge tenue dans la main, à l'intérieur de la voiture." data-alt-de="Die rote Bürste in der Hand, im Innenraum des Autos.">
+      <figcaption><span lang="fr">Format de poche, utilisée dans l'habitacle.</span><span lang="de">Handlich, im Innenraum im Einsatz.</span></figcaption>
+    </figure>
+    <div class="txt">
+      <p class="eyebrow"><span lang="fr">Dedans et dehors</span><span lang="de">Innen und aussen</span></p>
+      <h2 id="b3"><span lang="fr">Tient dans la paume, <em>va partout.</em></span><span lang="de">Passt in die Hand, <em>kommt überall hin.</em></span></h2>
+      <p lang="fr">Le côté intérieur du pare-brise se voile aussi. KLARSHIT est assez petit pour atteindre le bas de la vitre, derrière le tableau de bord.</p>
+      <p lang="de">Auch die Innenseite der Windschutzscheibe wird schmierig. KLARSHIT ist klein genug, um bis zum unteren Rand hinter dem Armaturenbrett zu kommen.</p>
+      <ul class="where">
+        <li><span lang="fr">Pare-brise</span><span lang="de">Windschutzscheibe</span></li>
+        <li><span lang="fr">Vitres latérales</span><span lang="de">Seitenscheiben</span></li>
+        <li><span lang="fr">Rétroviseurs</span><span lang="de">Spiegel</span></li>
+        <li><span lang="fr">Lunette arrière</span><span lang="de">Heckscheibe</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="faq-title"><span lang="fr">Questions</span><span lang="de">Fragen</span></h2>
+      <p lang="fr">Ta question n'est pas là ? Écris à <span class="plain-mail">hello@klarshit.example</span>.</p>
+      <p lang="de">Deine Frage fehlt? Schreib an <span class="plain-mail">hello@klarshit.example</span>.</p>
+    </div>
+    <div class="list">
+      <details><summary><span lang="fr">Comment ça marche ?</span><span lang="de">Wie funktioniert das?</span></summary>
+        <div class="a"><p lang="fr">Tu appuies le tampon en mousse contre la vitre. La pression libère le liquide du réservoir. Tu frottes, puis tu essuies avec un chiffon sec.</p><p lang="de">Du drückst das Schaumpad auf die Scheibe. Der Druck gibt die Flüssigkeit aus dem Behälter frei. Du reibst und wischst dann mit einem trockenen Tuch nach.</p></div></details>
+      <details><summary><span lang="fr">Sur quelles vitres je peux l'utiliser ?</span><span lang="de">Für welche Scheiben ist sie gedacht?</span></summary>
+        <div class="a"><p lang="fr">Le pare-brise, dedans et dehors, les vitres latérales, la lunette arrière et les rétroviseurs.</p><p lang="de">Windschutzscheibe innen und aussen, Seitenscheiben, Heckscheibe und Spiegel.</p></div></details>
+      <details><summary><span lang="fr">Ça remplace mes essuie-glaces ?</span><span lang="de">Ersetzt sie meine Scheibenwischer?</span></summary>
+        <div class="a"><p lang="fr">Non. KLARSHIT nettoie le verre. Tes balais d'essuie-glace restent indispensables et doivent être en bon état.</p><p lang="de">Nein. KLARSHIT reinigt das Glas. Deine Wischerblätter brauchst du weiterhin, und sie sollten in gutem Zustand sein.</p></div></details>
+      <details><summary><span lang="fr">Combien de passages par brosse ?</span><span lang="de">Wie lange reicht eine Bürste?</span></summary>
+        <div class="a"><p lang="fr">Ça dépend de la surface et de la fréquence. Nous n'annonçons pas de chiffre pour l'instant.</p><p lang="de">Das hängt von der Fläche und davon ab, wie oft du sie brauchst. Eine Zahl geben wir im Moment nicht an.</p></div></details>
+      <details><summary><span lang="fr">Elle est rechargeable ?</span><span lang="de">Ist sie nachfüllbar?</span></summary>
+        <div class="a"><p lang="fr">Oui, le réservoir s'ouvre à la base (repère « OPEN »). Nous ne vendons pas encore de recharges.</p><p lang="de">Ja, der Behälter lässt sich am Sockel öffnen (Markierung «OPEN»). Nachfüllungen verkaufen wir noch nicht.</p></div></details>
+      <details><summary><span lang="fr">Qu'y a-t-il dans le liquide ?</span><span lang="de">Was ist in der Flüssigkeit?</span></summary>
+        <div class="a"><p lang="fr">Les indications de composition et de sécurité figurent sur l'étiquette du produit. Garde la brosse hors de portée des enfants.</p><p lang="de">Angaben zu Inhaltsstoffen und Sicherheit stehen auf der Produktetikette. Bewahre die Bürste ausser Reichweite von Kindern auf.</p></div></details>
+      <details><summary><span lang="fr">Pourquoi un chiffon microfibre ?</span><span lang="de">Wozu das Mikrofasertuch?</span></summary>
+        <div class="a"><p lang="fr">Pour essuyer après le passage de la brosse. Il est offert avec les lots de 4 et de 6.</p><p lang="de">Zum Nachwischen nach der Bürste. Beim 4er- und 6er-Set ist es gratis dabei.</p></div></details>
+      <details><summary><span lang="fr">Quelle couleur je reçois ?</span><span lang="de">Welche Farbe bekomme ich?</span></summary>
+        <div class="a"><p lang="fr">La version rouge.</p><p lang="de">Die rote Version.</p></div></details>
+      <details><summary><span lang="fr">Combien de temps pour la livraison ?</span><span lang="de">Wie lange dauert der Versand?</span></summary>
+        <div class="a"><p lang="fr">Compte 2 à 4 jours ouvrables. La livraison est gratuite partout en Suisse.</p><p lang="de">Rechne mit 2–4 Werktagen. Der Versand ist in der ganzen Schweiz gratis.</p></div></details>
+      <details><summary><span lang="fr">Comment je peux payer ?</span><span lang="de">Wie kann ich bezahlen?</span></summary>
+        <div class="a"><p lang="fr">Avec TWINT, Visa, Mastercard, Apple Pay ou Google Pay, en francs suisses.</p><p lang="de">Mit TWINT, Visa, Mastercard, Apple Pay oder Google Pay, in Schweizer Franken.</p></div></details>
+      <details><summary><span lang="fr">Où la ranger dans la voiture ?</span><span lang="de">Wo verstaue ich sie im Auto?</span></summary>
+        <div class="a"><p lang="fr">Dans la boîte à gants ou le vide-poche de la portière, réservoir bien fermé.</p><p lang="de">Im Handschuhfach oder im Türfach, mit gut verschlossenem Behälter.</p></div></details>
+      <details><summary><span lang="fr">Pourquoi ce nom, KLARSHIT ?</span><span lang="de">Warum heisst das KLARSHIT?</span></summary>
+        <div class="a"><p lang="fr">Parce qu'après, tu vois clair. Pour le reste, on te laisse juger.</p><p lang="de">Weil du danach klar siehst. Den Rest überlassen wir dir.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="wordmark">KLARSHIT</p>
+    <p class="tagline"><span lang="fr">Vois clair, même quand il pleut.</span><span lang="de">Klare Sicht, auch wenn es regnet.</span></p>
+    <div class="foot-row">
+      <ul class="legal">
+        <li>Impressum</li>
+        <li><span lang="fr">CGV</span><span lang="de">AGB</span></li>
+        <li><span lang="fr">Protection des données</span><span lang="de">Datenschutz</span></li>
+      </ul>
+      <p><span lang="fr">Suisse · CHF</span><span lang="de">Schweiz · CHF</span></p>
+    </div>
+    <p style="font-size:.85rem;color:#aab1ba"><span lang="fr">Maquette de test. Aucune commande n'est possible sur cette page.</span><span lang="de">Testversion. Auf dieser Seite kann nichts bestellt werden.</span></p>
+  </div>
+</footer>
+
+<div class="bar" id="buy-bar" role="region" aria-label="Achat rapide / Schnellkauf">
+  <div class="wrap">
+    <img src="img/face.jpg" alt="" width="48" height="48">
+    <div class="meta">
+      <b>KLARSHIT</b>
+      <span><span class="js-qty">4×</span> · <span class="js-price">CHF 49.90</span></span>
+    </div>
+    <button type="button" class="btn js-buy" id="bar-buy"><span lang="fr">Acheter</span><span lang="de">Kaufen</span></button>
+  </div>
+  <div class="wrap bar-msg-wrap">
+    <p class="mock-msg" id="mock-msg-bar" role="status" hidden>
+      <span lang="fr">Maquette : paiement non branché, rien n'a été commandé.</span>
+      <span lang="de">Mockup: Zahlung nicht angeschlossen, nichts wurde bestellt.</span>
+    </p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var KEY = "klarshit-lang";
+  var PRICES = { "2": "CHF 29.90", "4": "CHF 49.90", "6": "CHF 64.90" };
+  var lang = "fr";
+  try { var saved = localStorage.getItem(KEY); if (saved === "de" || saved === "fr") lang = saved; } catch (e) {}
+
+  var LABELS = {
+    fr: { cart: "Panier", nav: "Navigation", thumbs: "Photos du produit", photo: "Voir la photo " },
+    de: { cart: "Warenkorb", nav: "Navigation", thumbs: "Produktfotos", photo: "Foto anzeigen " }
+  };
+
+  function currentThumb(){ return document.querySelector('#thumbs button[aria-current="true"]'); }
+
+  function syncGallery(btn){
+    var main = document.getElementById("gallery-main");
+    var cap = document.getElementById("gallery-cap");
+    var text = btn.getAttribute("data-" + lang);
+    main.src = btn.getAttribute("data-src");
+    main.alt = text;
+    cap.textContent = text;
+  }
+
+  function applyLang(l){
+    lang = l;
+    root.classList.toggle("de", l === "de");
+    root.lang = l === "de" ? "de-CH" : "fr-CH";
+    document.querySelectorAll("[data-set-lang]").forEach(function(b){
+      b.setAttribute("aria-pressed", b.getAttribute("data-set-lang") === l ? "true" : "false");
+    });
+    document.querySelectorAll("img[data-alt-" + l + "]").forEach(function(img){
+      img.alt = img.getAttribute("data-alt-" + l);
+    });
+    document.querySelectorAll("#thumbs button").forEach(function(b, i){
+      b.setAttribute("aria-label", LABELS[l].photo + (i + 1) + " : " + b.getAttribute("data-" + l));
+    });
+    document.getElementById("cart-link").setAttribute("aria-label", LABELS[l].cart);
+    document.getElementById("thumbs").setAttribute("aria-label", LABELS[l].thumbs);
+    syncGallery(currentThumb());
+  }
+
+  document.querySelectorAll("[data-set-lang]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var l = b.getAttribute("data-set-lang");
+      applyLang(l);
+      try { localStorage.setItem(KEY, l); } catch (e) {}
+    });
+  });
+
+  function openContact(){
+    var d = document.getElementById("contact");
+    if (!d) return;
+    d.open = true;
+    d.scrollIntoView({ block: "center" });
+  }
+  document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); openContact(); });
+  });
+  if (location.hash === "#contact") openContact();
+
+  document.querySelectorAll("#thumbs button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var cur = currentThumb(); if (cur) cur.removeAttribute("aria-current");
+      b.setAttribute("aria-current", "true");
+      syncGallery(b);
+    });
+  });
+
+  function updateTier(){
+    var sel = document.querySelector('input[name="tier"]:checked');
+    var v = sel ? sel.value : "4";
+    document.querySelectorAll(".js-price").forEach(function(el){ el.textContent = PRICES[v]; });
+    document.querySelectorAll(".js-qty").forEach(function(el){ el.textContent = v + "×"; });
+  }
+  document.querySelectorAll('input[name="tier"]').forEach(function(r){ r.addEventListener("change", updateTier); });
+
+  var timers = {};
+  function showMsg(id){
+    var el = document.getElementById(id);
+    el.hidden = false;
+    clearTimeout(timers[id]);
+    timers[id] = setTimeout(function(){ el.hidden = true; }, 6000);
+  }
+  document.getElementById("add-to-cart").addEventListener("click", function(){ showMsg("mock-msg-main"); });
+  document.getElementById("bar-buy").addEventListener("click", function(){ showMsg("mock-msg-bar"); });
+
+  applyLang(lang);
+  updateTier();
+})();
+</script>
