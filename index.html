@@ -160,6 +160,29 @@ button{font:inherit;color:inherit}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{padding-block:18px;font-size:1.06rem}
 .faq .a{padding-bottom:18px;color:var(--muted);max-width:40em}
+/* example reviews */
+.reviews .wrap{padding-block:72px;display:grid;gap:24px}
+.reviews-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px}
+.reviews-head h2{font-size:clamp(2.2rem,4.5vw,3.4rem);margin-top:8px}
+.score{display:flex;align-items:center;gap:14px}
+.score-n{font-family:var(--f-display);font-size:3.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.score p{font-size:.9rem;color:var(--muted);margin-top:4px}
+.stars{display:inline-flex;gap:2px;vertical-align:middle}
+.stars i{display:block;width:18px;height:18px}
+.stars svg{display:block;width:100%;height:100%;fill:var(--line)}
+.stars i.on svg{fill:var(--red)}
+.demo-note{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px dashed var(--muted);border-radius:var(--radius);padding:12px 14px;font-size:.92rem;color:var(--muted)}
+.demo-note svg{flex:none;width:20px;height:20px;margin-top:2px}
+.review-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.review{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.review img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.review-body{padding:14px 16px 16px;display:grid;gap:8px;align-content:start;flex:1}
+.review-who{font-size:.95rem;display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.review-body > p[lang]{font-size:.98rem}
+.review-lot{font-size:.84rem;color:var(--muted);margin-top:auto}
+.tag{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
+@media (max-width:960px){.review-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.review-grid{grid-template-columns:minmax(0,1fr)}.reviews .wrap{padding-block:56px}}
 
 /* footer */
 .site-footer{background:var(--fg);color:var(--paper);padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
@@ -447,6 +470,60 @@ button{font:inherit;color:inherit}
         <li><span lang="fr">Rétroviseurs</span><span lang="de">Spiegel</span></li>
         <li><span lang="fr">Lunette arrière</span><span lang="de">Heckscheibe</span></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="avis" aria-labelledby="reviews-title">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div>
+        <p class="eyebrow"><span lang="fr">Avis</span><span lang="de">Bewertungen</span></p>
+        <h2 id="reviews-title"><span lang="fr">Ce qu'ils en disent.</span><span lang="de">Was sie sagen.</span></h2>
+      </div>
+      <div class="score">
+        <span class="score-n">4,8</span>
+        <div><span class="stars" role="img" aria-label="5/5"><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i></span><p><span lang="fr">4 avis d'exemple</span><span lang="de">4 Beispielbewertungen</span></p></div>
+      </div>
+    </div>
+    <p class="demo-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span lang="fr">Avis d'exemple pour la démonstration. Ils seront remplacés par les vrais avis des premiers clients.</span><span lang="de">Beispielbewertungen für die Vorführung. Sie werden durch echte Bewertungen der ersten Kundinnen und Kunden ersetzt.</span></p>
+    <div class="review-grid">
+      <article class="review">
+        <img src="img/avis-retro2.jpg" width="480" height="480" loading="lazy" alt="Main qui passe la brosse rouge sur un rétroviseur mouillé." data-alt-fr="Main qui passe la brosse rouge sur un rétroviseur mouillé." data-alt-de="Hand führt die rote Bürste über einen nassen Aussenspiegel.">
+        <div class="review-body">
+          <span class="stars" role="img" aria-label="5/5"><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i></span>
+          <p class="review-who"><strong>Sandra</strong> · Lausanne <span class="tag"><span lang="fr">Exemple</span><span lang="de">Beispiel</span></span></p>
+          <p lang="fr">Mon rétro gardait des gouttes floues même avec l'antipluie. Deux passages, et je vois enfin net derrière moi.</p><p lang="de">Mein Spiegel blieb trotz Regenabweiser unscharf. Zwei Durchgänge, und ich sehe endlich klar nach hinten.</p>
+          <p class="review-lot"><span lang="fr">Lot de 4</span><span lang="de">4er-Set</span></p>
+        </div>
+      </article>
+      <article class="review">
+        <img src="img/avis-lunette.jpg" width="480" height="480" loading="lazy" alt="Brosse rouge sur une lunette arrière mouillée, une bande déjà nettoyée." data-alt-fr="Brosse rouge sur une lunette arrière mouillée, une bande déjà nettoyée." data-alt-de="Rote Bürste auf einer nassen Heckscheibe, ein Streifen bereits sauber.">
+        <div class="review-body">
+          <span class="stars" role="img" aria-label="5/5"><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i></span>
+          <p class="review-who"><strong>Thomas</strong> · Zürich <span class="tag"><span lang="fr">Exemple</span><span lang="de">Beispiel</span></span></p>
+          <p lang="fr">Testé sur la lunette arrière : la bande passée à la brosse ressort tout de suite au jet d'eau.</p><p lang="de">An der Heckscheibe getestet: Der behandelte Streifen ist beim Abspritzen sofort sichtbar.</p>
+          <p class="review-lot"><span lang="fr">Lot de 2</span><span lang="de">2er-Set</span></p>
+        </div>
+      </article>
+      <article class="review">
+        <img src="img/avis-scooter.jpg" width="480" height="480" loading="lazy" alt="Brosse rouge tenue au-dessus de l'écran d'un scooter." data-alt-fr="Brosse rouge tenue au-dessus de l'écran d'un scooter." data-alt-de="Rote Bürste über dem Display eines Rollers.">
+        <div class="review-body">
+          <span class="stars" role="img" aria-label="4/5"><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i></span>
+          <p class="review-who"><strong>Nadia</strong> · Fribourg <span class="tag"><span lang="fr">Exemple</span><span lang="de">Beispiel</span></span></p>
+          <p lang="fr">Je m'en sers aussi sur l'écran de mon scooter. Pratique, tient dans la main. J'aurais aimé un peu plus de liquide.</p><p lang="de">Ich nutze sie auch für das Display meines Rollers. Praktisch und handlich. Etwas mehr Flüssigkeit wäre schön.</p>
+          <p class="review-lot"><span lang="fr">Lot de 4</span><span lang="de">4er-Set</span></p>
+        </div>
+      </article>
+      <article class="review">
+        <img src="img/avis-retro.jpg" width="480" height="480" loading="lazy" alt="Main qui nettoie un rétroviseur avec la brosse rouge." data-alt-fr="Main qui nettoie un rétroviseur avec la brosse rouge." data-alt-de="Hand reinigt einen Aussenspiegel mit der roten Bürste.">
+        <div class="review-body">
+          <span class="stars" role="img" aria-label="5/5"><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i><i class="on"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.47 5.3 5.8.68-4.28 3.96 1.13 5.73L10 14.4l-5.12 2.87 1.13-5.73L1.73 7.58l5.8-.68z"/></svg></i></span>
+          <p class="review-who"><strong>Luca</strong> · Bern <span class="tag"><span lang="fr">Exemple</span><span lang="de">Beispiel</span></span></p>
+          <p lang="fr">Lot de 6 partagé avec mes frères. Le rétro côté passager était plein de traces d'eau, maintenant c'est propre.</p><p lang="de">6er-Set mit meinen Brüdern geteilt. Der Beifahrerspiegel war voller Wasserflecken, jetzt ist er sauber.</p>
+          <p class="review-lot"><span lang="fr">Lot de 6</span><span lang="de">6er-Set</span></p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
