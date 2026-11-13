@@ -7,6 +7,9 @@ avec les prix en CHF.
 **C'est une maquette.** Rien ne peut être acheté : les boutons d'achat
 affichent seulement un message.
 
+**Pour Shopify**, suivre [`shopify/SHOPIFY.md`](shopify/SHOPIFY.md) : la page y
+existe déjà en section de thème, avec les lots branchés sur le panier.
+
 Page en ligne : https://jonlekern.github.io/klarshit/
 
 ---
@@ -245,3 +248,4 @@ Ces éléments sont des exemples à remplacer avant une vraie boutique :
 | `video/musique.py` | Script qui génère la musique de la vidéo |
 | `fonts/` | Polices Malabard et Isocircle, avec leurs licences |
 | `.nojekyll` | Réglage technique pour GitHub Pages |
+| `shopify/` | Version Shopify de la page et guide pas à pas : voir `shopify/SHOPIFY.md` |

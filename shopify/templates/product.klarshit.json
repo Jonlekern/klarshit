@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "klarshit": {
+      "type": "klarshit-produit",
+      "settings": {
+        "contact_email": "",
+        "video_url": "",
+        "show_example_reviews": false
+      }
+    }
+  },
+  "order": ["klarshit"]
+}
