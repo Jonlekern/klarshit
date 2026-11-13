@@ -14,7 +14,8 @@ Page en ligne : https://jonlekern.github.io/klarshit/
 ## À coller dans ChatGPT avant de lui demander une modification
 
 > Tu travailles sur `index.html` du repo `klarshit`. Lis d'abord le README du
-> repo et respecte toutes ses règles. Ne change que ce que je te demande.
+> repo et respecte sa charte graphique et toutes ses règles. Ne change que ce
+> que je te demande.
 > Rends-moi le fichier complet, sans rien couper, et dis-moi en une liste ce que
 > tu as modifié.
 
